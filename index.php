@@ -13,9 +13,21 @@
 </head>
 
 <body>
+    <div class="container">
+    <?php
+        include "./include/db_connect.php";
+        echo $chat->showMessage();
+    ?>
+    
+    </div>
+
     <h1 class="bg-primary text-light px-3 py-1">Let's Chat</h1>
     <div class="container">
+        <form action="#" method="POST">
+        <textarea name="message" id="message" cols="7" rows="5" placeholder="Write your message" class="form-control fixed-bottom m-3 w-50"></textarea>
+        <button class="btn btn-primary text-light mt-3 fixed-bottom m-3">SEND</button>
         
+        </form>
 
     </div>
 
