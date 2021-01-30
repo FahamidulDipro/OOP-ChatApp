@@ -11,7 +11,7 @@
     <title>Let's Chat</title>
   </head>
   <body>
-    <h1 class="bg-primary text-light">Let's Chat</h1>
+    <h1 class="bg-primary text-light px-3 py-1">Let's Chat</h1>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
