@@ -9,4 +9,5 @@ try{
     die();
 }
 $chat = new Chat($db); 
+
 ?>
