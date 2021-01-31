@@ -1,14 +1,3 @@
-<?php
-include "./include/db_connect.php";
-if(isset($_POST['submit'])){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
-    $chat->signup($name,$email,$password,$cpassword);
-}
-
-?>
 <!doctype html>
 <html lang="en">
 
@@ -29,7 +18,17 @@ if(isset($_POST['submit'])){
     <h1 class="bg-primary text-light px-3 py-1 text-center">Signup</h1>
 
 
+    <?php
+    include "./include/db_connect.php";
+    if (isset($_POST['submit'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $cpassword = $_POST['cpassword'];
+        $chat->signup($name, $email, $password, $cpassword);
+    }
 
+    ?>
 
 
     <div class="container">
