@@ -35,5 +35,30 @@ class Chat
         }
 
     }
+
+    public function login($username,$pass){
+        $stmt = $this->db->query("SELECT * FROM `user_info` WHERE `username`='$username'");
+        $num = $stmt->rowCount();
+        if($num == 1){
+            $row = $stmt->fetch(PDO::FETCH_ASSOC); 
+            if($username == $row['username']){
+                    if($pass == $row['password']){
+                        session_start();
+                        header("location:index.php");
+                    }else{
+                        echo'<div class="alert alert-danger"><strong>Incorrect Password</strong></div>';
+                    }
+            }
+            else{
+                echo'<div class="alert alert-danger"><strong>Invalid Username</strong></div>';
+            }
+           
+        }
+    }
+
+    public function logout(){
+        session_destroy();
+        header("location:login.php");
+    }
 }
 ?>

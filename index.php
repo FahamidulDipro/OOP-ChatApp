@@ -1,3 +1,6 @@
+<?php
+          include "./include/db_connect.php";
+?>
 <!doctype html>
 <html lang="en">
 
@@ -13,22 +16,31 @@
 </head>
 
 <body>
+    <?php
+    if(isset($_POST['logout'])){
+        $chat->logout();
+    }
+    ?>
+    <div class="d-flex justify-content-between bg-primary">
+        <h1 class="bg-primary text-light px-3 py-1">Let's Chat</h1>
+        <form method="POST">
+            <input type="submit" name="logout" value="Logout" class="btn btn-outline-light my-2 mx-3">
+        </form>
 
-
-    <h1 class="bg-primary text-light px-3 py-1">Let's Chat</h1>
+    </div>
 
     <div class="container">
         <?php
-        include "./include/db_connect.php";
+  
         $chat->showMessage();
         ?>
 
         <?php
-       
-             if(isset($_POST['send'])){
-                $msg = $_POST['message'];
-                 $chat->insert($msg);
-             }
+
+        if (isset($_POST['send'])) {
+            $msg = $_POST['message'];
+            $chat->insert($msg);
+        }
         ?>
 
     </div>
@@ -36,7 +48,7 @@
 
 
     <div class="container">
-        <form  method="POST">
+        <form method="POST">
             <textarea name="message" id="message" cols="7" rows="5" placeholder="Write your message" class="form-control fixed-bottom m-3 w-50"></textarea>
             <button class="btn btn-primary text-light mt-3 fixed-bottom m-3" name="send">SEND</button>
 
