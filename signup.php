@@ -19,7 +19,7 @@
 
 
     <?php
-    include "./include/db_connect.php";
+    include "./include/crud.php";
     if (isset($_POST['submit'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
@@ -40,6 +40,7 @@
             <input type="submit" class="btn btn-primary text-light mt-3" value="Signup" name="submit">
 
         </form>
+        <p>Already have an account? Please <a href="login.php">Login</a></p>
 
     </div>
 

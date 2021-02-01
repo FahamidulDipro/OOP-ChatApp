@@ -1,5 +1,7 @@
 <?php
-          include "./include/db_connect.php";
+          include "./include/crud.php";
+      
+          session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,6 +25,7 @@
     ?>
     <div class="d-flex justify-content-between bg-primary">
         <h1 class="bg-primary text-light px-3 py-1">Let's Chat</h1>
+        <p class="text-light my-3 mx-3"> Welcome <strong><?php echo $_SESSION['username'];?></strong> </p>
         <form method="POST">
             <input type="submit" name="logout" value="Logout" class="btn btn-outline-light my-2 mx-3">
         </form>
@@ -31,16 +34,21 @@
 
     <div class="container">
         <?php
-  
-        $chat->showMessage();
+        // $sn = $_POST['sn'];
+      
         ?>
 
         <?php
 
         if (isset($_POST['send'])) {
             $msg = $_POST['message'];
-            $chat->insert($msg);
+            $sn = $_POST['sn'];
+            $chat->insert($msg,$sn);
+         
         }
+        // $sn = $_SESSION['id'];
+        // $cid = $chat->getChatId($sn);
+        $chat->showMessage();
         ?>
 
     </div>
@@ -51,7 +59,7 @@
         <form method="POST">
             <textarea name="message" id="message" cols="7" rows="5" placeholder="Write your message" class="form-control fixed-bottom m-3 w-50"></textarea>
             <button class="btn btn-primary text-light mt-3 fixed-bottom m-3" name="send">SEND</button>
-
+            <input type="hidden" name="sn" value="<?php echo $_SESSION['id'];?>">
         </form>
 
     </div>

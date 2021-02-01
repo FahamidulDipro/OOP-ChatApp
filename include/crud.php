@@ -1,4 +1,5 @@
 <?php
+include "./include/db_connect.php";
 class Chat
 {
     private $db;
@@ -10,13 +11,19 @@ class Chat
     {
         $stmt = $this->db->query("SELECT * FROM `chatpage`");
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo $row['message'] . '<br>';
-            echo $row['time'] . '<br>';
+            $sn = $row['chat_user_id'];
+            $stmt2 = $this->db->query("SELECT * FROM `user_info` WHERE `id`='$sn'");
+            while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
+                echo $row['message'] . '<br>';
+                echo $row2['username'].'<br>';
+                echo $row['time'] . '<br>';
+            }
+          
         }
     }
 
-    public function insert($m){
-        $stmt = $this->db->query("INSERT INTO `chatpage`(`message`, `time`) VALUES ('$m',CURRENT_TIMESTAMP())");
+    public function insert($m,$sn){
+        $stmt = $this->db->query("INSERT INTO `chatpage`(`message`,`chat_user_id`, `time`) VALUES ('$m','$sn',CURRENT_TIMESTAMP())");
         header('location:index.php');
     }
 
@@ -30,6 +37,8 @@ class Chat
             if($pass == $cpass){
                 
         $stmt = $this->db->query("INSERT INTO `user_info` (`username`, `email`, `password`, `cpassword`) VALUES ('$username', '$email', '$pass', '$cpass')");
+     
+      
         header('location:login.php');
             }
         }
@@ -44,6 +53,8 @@ class Chat
             if($username == $row['username']){
                     if($pass == $row['password']){
                         session_start();
+                        $_SESSION['username'] = $username;
+                        $_SESSION['id'] = $row['id'];
                         header("location:index.php");
                     }else{
                         echo'<div class="alert alert-danger"><strong>Incorrect Password</strong></div>';

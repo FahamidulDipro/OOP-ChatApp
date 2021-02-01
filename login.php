@@ -18,12 +18,13 @@
     <h1 class="bg-primary text-light px-3 py-1 text-center">Login</h1>
 
     <?php
-    include "./include/db_connect.php";
+    include "./include/crud.php";
+ 
     if(isset($_POST['submit'])){
         $name = $_POST['name'];
-  
         $pass = $_POST['password'];
         $chat->login($name,$pass);
+        // $lid = $database->lasetInsertId();
 
     }
        
@@ -31,7 +32,7 @@
 
 
 
-    <div class="container">
+    <div  class="container">
         <form method="POST">
             <input type="text" name="name" placeholder="Name" class="form-control mt-3" required>
           
@@ -39,6 +40,7 @@
             <input type="submit" class="btn btn-primary text-light mt-3" value="Login" name="submit">
 
         </form>
+        <p>Don't have an account? Please <a href="signup.php">Signup</a></p>
 
     </div>
 
