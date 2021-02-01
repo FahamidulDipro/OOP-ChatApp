@@ -46,8 +46,6 @@
             $chat->insert($msg,$sn);
          
         }
-        // $sn = $_SESSION['id'];
-        // $cid = $chat->getChatId($sn);
         $chat->showMessage();
         ?>
 
