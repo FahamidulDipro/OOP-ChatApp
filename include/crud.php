@@ -14,9 +14,10 @@ class Chat
             $sn = $row['chat_user_id'];
             $stmt2 = $this->db->query("SELECT * FROM `user_info` WHERE `id`='$sn'");
             while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
-                echo $row['message'] . '<br>';
-                echo $row2['username'].'<br>';
-                echo $row['time'] . '<br>';
+                // echo $row['message'] . '<br>';
+                // echo $row2['username'].'<br>';
+                $time = $row['time'];
+                echo '<div class="chat_container" style="width:50%;float:right;background-color:#7bdaed;margin:10px;border:3px solid black;padding:10px;border-radius:20px;"><strong>' . $row2['username'] . '</strong><br>' .$row['message'] . "<br><span style='font-size:12px;float:right;'>$time</span></div>";
             }
           
         }
@@ -53,6 +54,7 @@ class Chat
             if($username == $row['username']){
                     if($pass == $row['password']){
                         session_start();
+                        $_SESSION['loggedin']=true;
                         $_SESSION['username'] = $username;
                         $_SESSION['id'] = $row['id'];
                         header("location:index.php");

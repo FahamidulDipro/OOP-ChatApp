@@ -1,7 +1,7 @@
 <?php
-          include "./include/crud.php";
-      
-          session_start();
+include "./include/crud.php";
+
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -19,48 +19,64 @@
 
 <body>
     <?php
-    if(isset($_POST['logout'])){
+    if (isset($_POST['logout'])) {
         $chat->logout();
     }
     ?>
     <div class="d-flex justify-content-between bg-primary">
         <h1 class="bg-primary text-light px-3 py-1">Let's Chat</h1>
-        <p class="text-light my-3 mx-3"> Welcome <strong><?php echo $_SESSION['username'];?></strong> </p>
-        <form method="POST">
-            <input type="submit" name="logout" value="Logout" class="btn btn-outline-light my-2 mx-3">
-        </form>
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
+        ?>
+            <p class="text-light my-3 mx-3"> Welcome <strong><?php echo $_SESSION['username']; ?></strong> </p>
+            <form method="POST">
+                <input type="submit" name="logout" value="Logout" class="btn btn-outline-light my-2 mx-3">
+            </form>
+        <?php } else {  ?>
+            <div>
+                <a href="login.php"><input type="submit" value="Login" class="btn btn-outline-light my-2 mx-3"></a>
+                <a href="signup.php"><input type="submit" value="Signup" class="btn btn-outline-light my-2 mx-3"></a>
+            </div>
+
+
+        <?php
+        }
+        ?>
 
     </div>
 
-    <div class="container">
-        <?php
-        // $sn = $_POST['sn'];
-      
-        ?>
-
+    <div class="container overflow-auto" style="min-height: 600px;">
         <?php
 
         if (isset($_POST['send'])) {
             $msg = $_POST['message'];
             $sn = $_POST['sn'];
             $chat->insert($msg,$sn);
-         
         }
-        $chat->showMessage();
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
+            $chat->showMessage();
+        } else {
+        }
+
         ?>
 
     </div>
 
 
+    <?php
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
+        echo '<div class="container">
+         <form method="POST">
+             <textarea name="message" id="message" cols="7" rows="5" placeholder="Write your message" class="form-control fixed-bottom m-3 w-50"></textarea>
+             <button class="btn btn-primary text-light mt-3 fixed-bottom m-3" name="send">SEND</button>
+             <input type="hidden" name="sn" value="'.$_SESSION["id"].'">
+         </form>
+ 
+     </div>';
+    } else {
+        echo '<h1 class="text-center">Please <a href="login.php">Login</a> to chat</h1>';
+    }
+    ?>
 
-    <div class="container">
-        <form method="POST">
-            <textarea name="message" id="message" cols="7" rows="5" placeholder="Write your message" class="form-control fixed-bottom m-3 w-50"></textarea>
-            <button class="btn btn-primary text-light mt-3 fixed-bottom m-3" name="send">SEND</button>
-            <input type="hidden" name="sn" value="<?php echo $_SESSION['id'];?>">
-        </form>
-
-    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
