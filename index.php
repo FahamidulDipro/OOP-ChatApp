@@ -18,12 +18,20 @@ session_start();
 </head>
 
 <body>
+<style>
+body{
+    background:url('https://st2.depositphotos.com/1430176/5430/v/950/depositphotos_54307961-stock-illustration-doodle-food-icons-seamless-background.jpg');
+  
+    background-position: center top;
+    background-attachment: fixed;
+}
+</style>
     <?php
     if (isset($_POST['logout'])) {
         $chat->logout();
     }
     ?>
-    <div class="d-flex justify-content-between bg-primary">
+    <div class="d-flex justify-content-between bg-primary fixed-top">
         <h1 class="bg-primary text-light px-3 py-1">Let's Chat</h1>
         <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
         ?>
@@ -43,6 +51,7 @@ session_start();
         ?>
 
     </div>
+    <div style="height:200px;"></div>
 
     <div class="container overflow-auto" style="min-height: 600px;">
         <?php
@@ -60,14 +69,14 @@ session_start();
         ?>
 
     </div>
-
-
-    <?php
+<div style="height: 200px;"></div>
+<div style="margin-top: 10px;padding:5px;" class="bg-light fixed-bottom">
+<?php
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
         echo '<div class="container">
-         <form method="POST">
-             <textarea name="message" id="message" cols="7" rows="5" placeholder="Write your message" class="form-control fixed-bottom m-3 w-50"></textarea>
-             <button class="btn btn-primary text-light mt-3 fixed-bottom m-3" name="send">SEND</button>
+         <form method="POST" class="d-flex">
+             <textarea name="message" id="message" cols="7" rows="1" placeholder="Write your message" class="form-control  m-3 w-100"></textarea>
+             <div><button class="btn btn-primary text-light   m-5" name="send">SEND</button></div>
              <input type="hidden" name="sn" value="'.$_SESSION["id"].'">
          </form>
  
@@ -76,6 +85,8 @@ session_start();
         echo '<h1 class="text-center">Please <a href="login.php">Login</a> to chat</h1>';
     }
     ?>
+</div>
+   
 
 
     <!-- Optional JavaScript; choose one of the two! -->

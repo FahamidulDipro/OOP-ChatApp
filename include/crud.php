@@ -15,9 +15,15 @@ class Chat
             $stmt2 = $this->db->query("SELECT * FROM `user_info` WHERE `id`='$sn'");
             while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
                 // echo $row['message'] . '<br>';
-                // echo $row2['username'].'<br>';
+                $name = $row2['username'];
                 $time = $row['time'];
-                echo '<div class="chat_container" style="width:50%;float:right;background-color:#7bdaed;margin:10px;border:3px solid black;padding:10px;border-radius:20px;"><strong>' . $row2['username'] . '</strong><br>' .$row['message'] . "<br><span style='font-size:12px;float:right;'>$time</span></div>";
+                if($name == $_SESSION['username']){
+                    echo '<div class="chat_container" style="width:50%;float:right;background-color:#7bdaed;margin:10px;border:3px solid black;padding:10px;border-radius:20px;"><strong>' . $name . '</strong><br>' .$row['message'] . "<br><span style='font-size:12px;float:right;'>$time</span></div>";
+                }
+                else{
+                    echo '<div class="chat_container" style="width:50%;float:left;background-color:#aae2d6;margin:10px;border:3px solid black;padding:10px;border-radius:20px;"><strong>' . $name . '</strong><br>' .$row['message'] . "<br><span style='font-size:12px;float:right;'>$time</span></div>";
+                }
+              
             }
           
         }
