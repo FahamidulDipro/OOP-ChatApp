@@ -20,7 +20,7 @@ session_start();
 <body>
 <style>
 body{
-    background:url('https://st2.depositphotos.com/1430176/5430/v/950/depositphotos_54307961-stock-illustration-doodle-food-icons-seamless-background.jpg');
+    background:url('https://us.123rf.com/450wm/aldanna/aldanna1502/aldanna150200028/36427424-mobile-apps-pattern-with-music-chat-gallery-speaking-bubble-email-magnifying-glass-shopping-search-n.jpg?ver=6');
   
     background-position: center top;
     background-attachment: fixed;
@@ -31,8 +31,8 @@ body{
         $chat->logout();
     }
     ?>
-    <div class="d-flex justify-content-between bg-primary fixed-top">
-        <h1 class="bg-primary text-light px-3 py-1">Let's Chat</h1>
+    <div class="d-flex justify-content-between fixed-top" style="background-color: #128c7e;">
+        <h1 class="text-light px-3 py-1">Let's Chat</h1>
         <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
         ?>
             <p class="text-light my-3 mx-3"> Welcome <strong><?php echo $_SESSION['username']; ?></strong> </p>
@@ -70,13 +70,13 @@ body{
 
     </div>
 <div style="height: 200px;"></div>
-<div style="margin-top: 10px;padding:5px;" class="bg-light fixed-bottom">
+<div style="margin-top: 10px;padding:5px;" class="fixed-bottom">
 <?php
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
         echo '<div class="container">
          <form method="POST" class="d-flex">
-             <textarea name="message" id="message" cols="7" rows="1" placeholder="Write your message" class="form-control  m-3 w-100"></textarea>
-             <div><button class="btn btn-primary text-light   m-5" name="send">SEND</button></div>
+             <textarea name="message" id="message" cols="7" rows="2" placeholder="Write your message" class="form-control border border-dark m-3 w-100"></textarea>
+             <div><button class="btn text-light mt-5" name="send" style="background-color:#10c02d;">SEND</button></div>
              <input type="hidden" name="sn" value="'.$_SESSION["id"].'">
          </form>
  
